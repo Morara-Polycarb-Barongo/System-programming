@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Prompt the user to enter CustomerID, CustomerName, and UnitConsumed
+read -p "Enter CustomerID: " customerId
+read -p "Enter CustomerName: " customerName
+read -p "Enter UnitConsumed: " unitConsumed
+
+# Initialize variables for charges and surcharge
+chargePerUnit=0
+totalBill=0
+
+# Calculate charges based on unit consumed
+if [ $unitConsumed -lt 200 ]; then
+    chargePerUnit=120
+elif [ $unitConsumed -ge 200 ] && [ $unitConsumed -lt 400 ]; then
+    chargePerUnit=150
+elif [ $unitConsumed -ge 400 ] && [ $unitConsumed -lt 600 ]; then
+    chargePerUnit=180
+else
+    chargePerUnit=200
+fi
+
+# Calculate total bill
+totalBill=$((unitConsumed * chargePerUnit))
+
+# Display the bill details
+echo "CustomerID: $customerId"
+echo "CustomerName: $customerName"
+echo "UnitConsumed: $unitConsumed"
+echo "Total Bill: Ksh $totalBill"
